@@ -16,6 +16,6 @@ install:
 	@echo "nothing to install"
 
 clean:
-	rm -f $(OBJS) $(LIBS)
+	rm -f $(OBJS)
 
 
