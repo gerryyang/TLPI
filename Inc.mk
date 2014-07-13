@@ -7,6 +7,7 @@ AR = ar
 AROPT = -scurv
 
 CFLAGS = -Werror -g -Os -pipe -D_REENTRANT
+#CFLAGS = -Wall -g -Os -pipe -D_REENTRANT
 
 INCLUDE = -I/Users/gerryyang/github_project/TLPI/tlpi
 LIBPATH = -L/Users/gerryyang/github_project/TLPI/lib
