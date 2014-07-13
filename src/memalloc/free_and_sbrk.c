@@ -69,4 +69,32 @@ main(int argc, char *argv[])
 
 	exit(EXIT_SUCCESS);
 }
+/*
+output: OS X
+gerryyang@mba:memalloc$./free_and_sbrk 
 
+Usage: ./free_and_sbrk num-allocs block-size [step [min [max]]]
+gerryyang@mba:memalloc$./free_and_sbrk 1000 10240 2
+
+Initial program break:          0x10b7dd000
+Allocating 1000*10240 bytes
+Program break is now:           0x10b7dd000
+Freeing blocks from 1 to 1000 in steps of 2
+After free(), program break is: 0x10b7dd000
+gerryyang@mba:memalloc$./free_and_sbrk 1000 10240 1 1 999
+
+Initial program break:          0x1066f7000
+Allocating 1000*10240 bytes
+Program break is now:           0x1066f7000
+Freeing blocks from 1 to 999 in steps of 1
+After free(), program break is: 0x1066f7000
+gerryyang@mba:memalloc$./free_and_sbrk 1000 10240 1 500 1000
+
+Initial program break:          0x1029ca000
+Allocating 1000*10240 bytes
+Program break is now:           0x1029ca000
+Freeing blocks from 500 to 1000 in steps of 1
+After free(), program break is: 0x1029ca000
+gerryyang@mba:memalloc$uname -a
+Darwin mba.local 13.2.0 Darwin Kernel Version 13.2.0: Thu Apr 17 23:03:13 PDT 2014; root:xnu-2422.100.13~1/RELEASE_X86_64 x86_64 i386 MacBookAir5,2 Darwin
+ * */
