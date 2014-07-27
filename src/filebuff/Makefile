@@ -1,21 +1,21 @@
 include ../../Inc.mk
 
-DIRECT_READ_OBJS = direct_read.o
-DIRECT_READ = direct_read
+WRITE_BYTES_OBJS = write_bytes.o
+WRITE_BYTES = write_bytes
 
-BINS = $(DIRECT_READ) 
+BINS = $(WRITE_BYTES) 
 
 #CFLAGS += -Dxxx
 
 all: $(BINS)
 
-$(DIRECT_READ): $(DIRECT_READ_OBJS)
+$(WRITE_BYTES): $(WRITE_BYTES_OBJS)
 	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
-	@echo "build $(DIRECT_READ) OK!"
+	@echo "build $(WRITE_BYTES) OK!"
 
 install:
 	@echo "nothing to install"
 
 clean:
-	-rm -f $(DIRECT_READ_OBJS) $(BINS)
+	-rm -f $(WRITE_BYTES_OBJS) $(BINS)
 
