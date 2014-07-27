@@ -19,7 +19,7 @@ This program is Linux-specific.
 */
 #define _GNU_SOURCE     /* Obtain O_DIRECT definition from <fcntl.h> */
 #include <fcntl.h>
-#include <malloc.h>// fatal error: 'malloc.h' file not found
+#include <malloc.h>// fatal error: 'malloc.h' file not found on Mac OS X
 #include "tlpi_hdr.h"
 
 int
