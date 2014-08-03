@@ -1,17 +1,17 @@
 include ../../Inc.mk
 
 CALENDAR_TIME_OBJS = calendar_time.o
-CALENDAR_TIMR = calendar_time
+CALENDAR_TIME = calendar_time
 
-BINS = $(CALENDAR_TIMR) 
+BINS = $(CALENDAR_TIME) 
 
 #CFLAGS += -Wno-deprecated-declarations
 
 all: $(BINS)
 
-$(CALENDAR_TIMR): $(CALENDAR_TIME_OBJS)
+$(CALENDAR_TIME): $(CALENDAR_TIME_OBJS)
 	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
-	@echo "build $(CALENDAR_TIMR) OK!"
+	@echo "build $(CALENDAR_TIME) OK!"
 
 install:
 	@echo "nothing to install"
