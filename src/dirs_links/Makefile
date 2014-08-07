@@ -9,7 +9,10 @@ VIEW_SYMLINK = view_symlink
 LIST_FILES_OBJS = list_files.o
 LIST_FILES = list_files
 
-BINS = $(T_UNLINK) $(VIEW_SYMLINK) $(LIST_FILES)
+NFTW_DIR_TREE_OBJS = nftw_dir_tree.o
+NFTW_DIR_TREE_FILES = nftw_dir_tree 
+
+BINS = $(T_UNLINK) $(VIEW_SYMLINK) $(LIST_FILES) $(NFTW_DIR_TREE_FILES)
 
 #CFLAGS += -Wno-deprecated-declarations
 
@@ -27,9 +30,13 @@ $(LIST_FILES): $(LIST_FILES_OBJS)
 	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
 	@echo "build $(LIST_FILES) OK!"
 
+$(NFTW_DIR_TREE_FILES): $(NFTW_DIR_TREE_OBJS)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(NFTW_DIR_TREE_FILES) OK!"
+
 install:
 	@echo "nothing to install"
 
 clean:
-	-rm -f $(T_UNLINK_OBJS) $(VIEW_SYMLINK_OBJS) $(LIST_FILES_OBJS) $(BINS)
+	-rm -f $(T_UNLINK_OBJS) $(VIEW_SYMLINK_OBJS) $(LIST_FILES_OBJS) $(NFTW_DIR_TREE_OBJS) $(BINS)
 
