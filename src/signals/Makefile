@@ -3,7 +3,10 @@ include ../../Inc.mk
 OUCH_OBJS = ouch.o
 OUCH = ouch 
 
-BINS = $(OUCH) 
+INTQUIT_OBJS = intquit.o
+INTQUIT = intquit 
+
+BINS = $(OUCH) $(INTQUIT)
 
 #CFLAGS += -Wno-deprecated-declarations
 
@@ -13,9 +16,13 @@ $(OUCH): $(OUCH_OBJS)
 	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
 	@echo "build $(OUCH) OK!"
 
+$(INTQUIT): $(INTQUIT_OBJS)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(INTQUIT) OK!"
+
 install:
 	@echo "nothing to install"
 
 clean:
-	-rm -f $(OUCH_OBJS) $(BINS)
+	-rm -f $(OUCH_OBJS) $(INTQUIT_OBJS) $(BINS)
 
