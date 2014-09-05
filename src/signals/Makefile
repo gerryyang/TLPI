@@ -12,9 +12,15 @@ T_KILL = t_kill
 IPS_OBJS = ignore_pending_sig.o
 IPS = ignore_pending_sig 
 
+SIG_SENDER_OBJS = sig_sender.o
+SIG_SENDER = sig_sender
+
+SIG_RECEIVER_OBJS = sig_receiver.o
+SIG_RECEIVER = sig_receiver
+
 SF = signal_functions.o
 
-BINS = $(OUCH) $(INTQUIT) $(T_KILL) $(IPS)
+BINS = $(OUCH) $(INTQUIT) $(T_KILL) $(IPS) $(SIG_SENDER) $(SIG_RECEIVER)
 
 #CFLAGS += -Wno-deprecated-declarations
 INCLUDE += -I./
@@ -37,9 +43,17 @@ $(IPS): $(IPS_OBJS) $(SF)
 	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
 	@echo "build $(IPS) OK!"
 
+$(SIG_SENDER): $(SIG_SENDER_OBJS)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(SIG_SENDER) OK!"
+
+$(SIG_RECEIVER): $(SIG_RECEIVER_OBJS) $(SF)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(SIG_RECEIVER) OK!"
+
 install:
 	@echo "nothing to install"
 
 clean:
-	-rm -f $(OUCH_OBJS) $(INTQUIT_OBJS) $(T_KILL_OBJS) $(IPS_OBJS) $(SF) $(BINS)
+	-rm -f $(OUCH_OBJS) $(INTQUIT_OBJS) $(T_KILL_OBJS) $(IPS_OBJS) $(SF) $(SIG_SENDER_OBJS) $(SIG_RECEIVER_OBJS) $(BINS)
 
