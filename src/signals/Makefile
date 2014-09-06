@@ -18,9 +18,12 @@ SIG_SENDER = sig_sender
 SIG_RECEIVER_OBJS = sig_receiver.o
 SIG_RECEIVER = sig_receiver
 
+NONREENTRANT_OBJS = nonreentrant.o
+NONREENTRANT = nonreentrant
+
 SF = signal_functions.o
 
-BINS = $(OUCH) $(INTQUIT) $(T_KILL) $(IPS) $(SIG_SENDER) $(SIG_RECEIVER)
+BINS = $(OUCH) $(INTQUIT) $(T_KILL) $(IPS) $(SIG_SENDER) $(SIG_RECEIVER) $(NONREENTRANT)
 
 #CFLAGS += -Wno-deprecated-declarations
 INCLUDE += -I./
@@ -51,9 +54,13 @@ $(SIG_RECEIVER): $(SIG_RECEIVER_OBJS) $(SF)
 	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
 	@echo "build $(SIG_RECEIVER) OK!"
 
+$(NONREENTRANT): $(NONREENTRANT_OBJS)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(NONREENTRANT) OK!"
+
 install:
 	@echo "nothing to install"
 
 clean:
-	-rm -f $(OUCH_OBJS) $(INTQUIT_OBJS) $(T_KILL_OBJS) $(IPS_OBJS) $(SF) $(SIG_SENDER_OBJS) $(SIG_RECEIVER_OBJS) $(BINS)
+	-rm -f $(OUCH_OBJS) $(INTQUIT_OBJS) $(T_KILL_OBJS) $(IPS_OBJS) $(SF) $(SIG_SENDER_OBJS) $(SIG_RECEIVER_OBJS) $(NONREENTRANT_OBJS) $(BINS)
 
