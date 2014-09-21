@@ -90,6 +90,9 @@ main(int argc, char *argv[])
 	}
 }
 /*
+sigsuspend:
+http://www.gnu.org/software/libc/manual/html_node/Sigsuspend.html
+
 output:
 gerryyang@mba:proexec$./fork_sig_sync 
 [23:33:12 81037] Parent about to wait for signal
