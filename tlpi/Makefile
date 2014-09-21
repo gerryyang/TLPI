@@ -1,7 +1,7 @@
 include ../Inc.mk
 
 LIB_TLPI = ../lib/libtlpi.a
-OBJS_TLPI = error_functions.o get_num.o alt_functions.o
+OBJS_TLPI = error_functions.o get_num.o alt_functions.o curr_time.o
 
 LIBS = $(LIB_TLPI)
 OBJS = $(OBJS_TLPI)
