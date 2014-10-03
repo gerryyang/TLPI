@@ -15,7 +15,10 @@ FWOF = fork_whos_on_first
 FSS_OBJS = fork_sig_sync.o
 FSS = fork_sig_sync
 
-BINS = $(T_FORK) $(FFS) $(T_VFORK) $(FWOF) $(FSS)
+EXIT_HANDLERS_OBJS = exit_handlers.o
+EXIT_HANDLERS = exit_handlers
+
+BINS = $(T_FORK) $(FFS) $(T_VFORK) $(FWOF) $(FSS) $(EXIT_HANDLERS)
 
 #CFLAGS += -Wno-deprecated-declarations
 
@@ -41,9 +44,13 @@ $(FSS): $(FSS_OBJS)
 	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
 	@echo "build $(FSS) OK!"
 
+$(EXIT_HANDLERS): $(EXIT_HANDLERS_OBJS)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(EXIT_HANDLERS) OK!"
+
 install:
 	@echo "nothing to install"
 
 clean:
-	-rm -f $(T_FORK_OBJS) $(FFS_OBJS) $(T_VFORK_OBJS) $(FWOF_OBJS) $(FSS_OBJS) $(BINS)
+	-rm -f $(T_FORK_OBJS) $(FFS_OBJS) $(T_VFORK_OBJS) $(FWOF_OBJS) $(FSS_OBJS) $(EXIT_HANDLERS_OBJS) $(BINS)
 
