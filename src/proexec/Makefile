@@ -18,7 +18,13 @@ FSS = fork_sig_sync
 EXIT_HANDLERS_OBJS = exit_handlers.o
 EXIT_HANDLERS = exit_handlers
 
-BINS = $(T_FORK) $(FFS) $(T_VFORK) $(FWOF) $(FSS) $(EXIT_HANDLERS)
+FORK_STDIO_BUF_OBJS = fork_stdio_buf.o
+FORK_STDIO_BUF = fork_stdio_buf
+
+FORK_STDIO_BUF2_OBJS = fork_stdio_buf2.o
+FORK_STDIO_BUF2 = fork_stdio_buf2
+
+BINS = $(T_FORK) $(FFS) $(T_VFORK) $(FWOF) $(FSS) $(EXIT_HANDLERS) $(FORK_STDIO_BUF) $(FORK_STDIO_BUF2)
 
 #CFLAGS += -Wno-deprecated-declarations
 
@@ -48,9 +54,17 @@ $(EXIT_HANDLERS): $(EXIT_HANDLERS_OBJS)
 	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
 	@echo "build $(EXIT_HANDLERS) OK!"
 
+$(FORK_STDIO_BUF): $(FORK_STDIO_BUF_OBJS)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(FORK_STDIO_BUF) OK!"
+
+$(FORK_STDIO_BUF2): $(FORK_STDIO_BUF2_OBJS)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(FORK_STDIO_BUF2) OK!"
+
 install:
 	@echo "nothing to install"
 
 clean:
-	-rm -f $(T_FORK_OBJS) $(FFS_OBJS) $(T_VFORK_OBJS) $(FWOF_OBJS) $(FSS_OBJS) $(EXIT_HANDLERS_OBJS) $(BINS)
+	-rm -f $(T_FORK_OBJS) $(FFS_OBJS) $(T_VFORK_OBJS) $(FWOF_OBJS) $(FSS_OBJS) $(EXIT_HANDLERS_OBJS) $(FORK_STDIO_BUF_OBJS) $(FORK_STDIO_BUF2_OBJS) $(BINS)
 
