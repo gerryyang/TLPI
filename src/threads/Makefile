@@ -12,7 +12,10 @@ MAIN_THREAD_EXIT = main_thread_exit
 THREAD_INCR_OBJS = thread_incr.o
 THREAD_INCR = thread_incr
 
-BINS = $(SIMPLE_THREAD) $(DETACHED_ATTRIB) $(MAIN_THREAD_EXIT) $(THREAD_INCR)
+THREAD_INCR_MUTEX_OBJS = thread_incr_mutex.o
+THREAD_INCR_MUTEX = thread_incr_mutex
+
+BINS = $(SIMPLE_THREAD) $(DETACHED_ATTRIB) $(MAIN_THREAD_EXIT) $(THREAD_INCR) $(THREAD_INCR_MUTEX)
 
 #CFLAGS += -Wno-deprecated-declarations
 
@@ -34,9 +37,13 @@ $(THREAD_INCR): $(THREAD_INCR_OBJS)
 	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
 	@echo "build $(THREAD_INCR) OK!"
 
+$(THREAD_INCR_MUTEX): $(THREAD_INCR_MUTEX_OBJS)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(THREAD_INCR_MUTEX) OK!"
+
 install:
 	@echo "nothing to install"
 
 clean:
-	-rm -f $(SIMPLE_THREAD_OBJS) $(DETACHED_ATTRIB_OBJS) $(MAIN_THREAD_EXIT_OBJS) $(THREAD_INCR_OBJS) $(BINS)
+	-rm -f $(SIMPLE_THREAD_OBJS) $(DETACHED_ATTRIB_OBJS) $(MAIN_THREAD_EXIT_OBJS) $(THREAD_INCR_OBJS) $(THREAD_INCR_MUTEX_OBJS) $(BINS)
 
