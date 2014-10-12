@@ -20,7 +20,7 @@ THREAD_MULTIJOIN = thread_multijoin
 
 BINS = $(SIMPLE_THREAD) $(DETACHED_ATTRIB) $(MAIN_THREAD_EXIT) $(THREAD_INCR) $(THREAD_INCR_MUTEX) $(THREAD_MULTIJOIN)
 
-#CFLAGS += -Wno-deprecated-declarations
+CFLAGS += -Wno-int-to-void-pointer-cast
 
 all: $(BINS)
 

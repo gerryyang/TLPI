@@ -53,7 +53,8 @@ static struct {                 /* Info about each thread */
 static void *                   /* Start function for thread */
 threadFunc(void *arg)
 {
-	int idx = *((int*) arg);
+	//int idx = *((int*) arg);
+	int idx = (int) arg;
 	int s;
 
 	printf("sleep[%d:%d]\n", idx, thread[idx].sleepTime);
@@ -93,9 +94,8 @@ main(int argc, char *argv[])
 
 	for (idx = 0; idx < argc - 1; idx++) {
 		thread[idx].sleepTime = getInt(argv[idx + 1], GN_NONNEG, NULL);
-		printf("for sleep[%d:%d]\n", idx, thread[idx].sleepTime);
 		thread[idx].state = TS_ALIVE;
-		s = pthread_create(&thread[idx].tid, NULL, threadFunc, &idx);
+		s = pthread_create(&thread[idx].tid, NULL, threadFunc, (void *) idx);
 		if (s != 0)
 			errExitEN(s, "pthread_create");
 	}
@@ -137,4 +137,13 @@ main(int argc, char *argv[])
 
 	exit(EXIT_SUCCESS);
 }
-
+/*
+output:
+gerryyang@mba:threads$./thread_multijoin 2 3
+sleep[0:2]
+sleep[1:3]
+Thread 0 terminating
+Reaped thread 0 (numLive=1)
+Thread 1 terminating
+Reaped thread 1 (numLive=0)
+ */
