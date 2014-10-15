@@ -35,3 +35,13 @@ strerror(int err)
 	return buf;
 }
 
+/*
+sys_errlist, sys_nerr
+global variables for mapping errno to error messages 
+
+#include <stdio.h>
+extern char **sys_errlist;
+extern int sys_nerr; 
+
+http://www.mkssoftware.com/docs/man5/sys_errlist.5.asp
+ */
