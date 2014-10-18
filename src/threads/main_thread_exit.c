@@ -25,7 +25,7 @@ main(int argc, char *argv[])
 	void *res;
 	int s;
 
-	for (int i = 0; i != 3; ++i)
+	for (int i = 0; i != 6; ++i)
 	{
 		s = pthread_create(&t1, NULL, threadFunc, NULL);
 		if (s != 0)
@@ -38,7 +38,7 @@ main(int argc, char *argv[])
 
 	pthread_exit(NULL);
 	// compare
-	exit(EXIT_SUCCESS);
+	//exit(EXIT_SUCCESS);
 }
 /*
 output:
