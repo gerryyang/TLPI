@@ -16,8 +16,32 @@
 #define _BSD_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+class Foo
+{
+public:
+	Foo() {
+		memset(m_buf, 65, sizeof(m_buf));
+		printf("Foo() m_buf[0]=%c, m_buf[%ld]=%c\n", 
+				m_buf[0], sizeof(m_buf) - 1, m_buf[sizeof(m_buf) - 1]);
+	}
+
+	~Foo() {
+		printf("~Foo()\n");
+	}
+
+private:
+	char m_buf[1024 * 1024 * 10];// local
+	static char m_s_buf[1024 * 1024 * 5];// static
+};
+char Foo::m_s_buf[1024 * 1024 * 5] = "a";
+
+Foo foo_obj;// Uninitialized or initialized ?
+
 
 char globBuf[65536];            /* Uninitialized data segment */
+//char globBuf[65536] = "a";    /* initialized data segment */
 int primes[] = { 2, 3, 5, 7 };  /* Initialized data segment */
 
 static int
@@ -52,7 +76,7 @@ main(int argc, char *argv[])    /* Allocated in frame for main() */
 
 	char *p;                    /* Allocated in frame for main() */
 
-	p = malloc(1024);           /* Points to memory in heap segment */
+	p = (char *)malloc(1024);           /* Points to memory in heap segment */
 
 	doCalc(key);
 
