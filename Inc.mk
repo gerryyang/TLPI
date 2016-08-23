@@ -15,8 +15,6 @@ LIBPATH = -L/Users/gerryyang/github_project/TLPI/lib
 DEP_LIBS = -ltlpi
 LIBS = $(DEP_LIBS)
 
-
-# calc relation between files automatically
 %.o: %.cpp
 	$(CXX) $(CFLAGS) $(INCLUDE) -c $<
 

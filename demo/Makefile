@@ -5,7 +5,7 @@ SYSCALL_SPEED = syscall_speed
 
 BINS = $(SYSCALL_SPEED)
 
-#CFLAGS += -DNOSYSCALL
+CFLAGS += -DNOSYSCALL
 
 all: $(BINS)
 
