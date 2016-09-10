@@ -9,7 +9,13 @@ PIPE_SYNC = pipe_sync
 PIPE_LS_WC_OBJS = pipe_ls_wc.o
 PIPE_LS_WC = pipe_ls_wc
 
-BINS = $(SIMPLE_PIPES) $(PIPE_SYNC) $(PIPE_LS_WC)
+FIFO_CLIENT_OBJS = fifo_client.o
+FIFO_CLIENT = fifo_client 
+
+FIFO_SERVER_OBJS = fifo_server.o
+FIFO_SERVER = fifo_server 
+
+BINS = $(SIMPLE_PIPES) $(PIPE_SYNC) $(PIPE_LS_WC) $(FIFO_CLIENT) $(FIFO_SERVER)
 
 #CFLAGS += -Wno-deprecated-declarations
 
@@ -27,9 +33,19 @@ $(PIPE_LS_WC): $(PIPE_LS_WC_OBJS)
 	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
 	@echo "build $(PIPE_LS_WC) OK!"
 
+$(FIFO_CLIENT): $(FIFO_CLIENT_OBJS)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(FIFO_CLIENT) OK!"
+
+$(FIFO_SERVER): $(FIFO_SERVER_OBJS)
+	$(CXX) -o $@ $^ $(LIBPATH) $(LIBS)
+	@echo "build $(FIFO_SERVER) OK!"
+
 install:
 	@echo "nothing to install"
 
 clean:
-	-rm -f $(SIMPLE_PIPES_OBJS) $(PIPE_SYNC_OBJS) $(PIPE_LS_WC_OBJS) $(BINS)
+	-rm -f $(SIMPLE_PIPES_OBJS) $(PIPE_SYNC_OBJS) $(PIPE_LS_WC_OBJS) \
+		$(FIFO_CLIENT_OBJS) $(FIFO_SERVER_OBJS) \
+		$(BINS)
 
